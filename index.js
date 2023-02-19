@@ -3,16 +3,14 @@ const app = express();
 const port = 5000;
 const { User } = require("./models/User");
 const bodyParser = require("body-parser");
+const config = require("./config/key");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 const mongoose = require("mongoose");
 mongoose
-  .connect(
-    "mongodb+srv://allnightcat12:abcd1234@boilerplate.zyfpb1f.mongodb.net/?retryWrites=true&w=majority",
-    {}
-  )
+  .connect(config.mongoURI, {})
   .then(() => console.log("MongoDB connedted!"))
   .catch((err) => console.log(err));
 
