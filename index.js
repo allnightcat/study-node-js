@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 const mongoose = require("mongoose");
+mongoose.set("strictQuery", true);
 mongoose
   .connect(config.mongoURI, {})
   .then(() => console.log("MongoDB connedted!"))
