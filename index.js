@@ -1,11 +1,11 @@
 const express = require("express");
 const app = express();
 const port = 5000;
-const { User } = require("./models/User");
+const { User } = require("./server/models/User");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const config = require("./config/key");
-const { auth } = require("./middlewares/auth");
+const config = require("./server/config/key");
+const { auth } = require("./server/middlewares/auth");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -82,6 +82,10 @@ app.get("/api/users/logout", auth, (req, res) => {
       success: true,
     });
   });
+});
+
+app.get("/api/hello", (req, res) => {
+  res.send("안녕하세요!!");
 });
 
 app.get("/", (req, res) => {
